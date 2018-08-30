@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import {BrowserRouter as Router, Link, Switch} from "react-router-dom";
 import "./Styling/App.css";
+import logo from './Images/movie-reel.png'
 
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 // const NOW_PLAYING = "/now_playing?api_key=";
@@ -36,7 +37,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">Now showing</header>
+        <header className="App-header">
+        <section className="logo">
+        <img id="movie_reel" src={logo} alt="logo"></img>
+        </section>
+          <section className="masthead">
+            <h1 id="banner">Now showing at the Movies</h1>
+          </section>
+        </header>
         <section className="movie-list" />
       </div>
     );

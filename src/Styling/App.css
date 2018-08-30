@@ -2,14 +2,16 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
+#movie_reel {
+  animation: movie_reel infinite 20s linear;
   height: 80px;
 }
 
 .App-header {
+  display: flex;
+  align-items: center;
   background-color: #222;
-  height: 150px;
+  height: 75px;
   padding: 20px;
   color: white;
 }
@@ -18,11 +20,18 @@
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+#banner {
+  font-size: 2.5em;
+  font-family: cursive;
 }
 
-@keyframes App-logo-spin {
+#movie_reel {
+  height: auto;
+  width: 4em;
+  margin-right: 1em;
+}
+
+@keyframes movie_reel {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
