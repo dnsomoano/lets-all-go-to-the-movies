@@ -29,7 +29,7 @@ class App extends Component {
       .then(json => {
         console.log(json);
         this.setState({
-          movies: json
+          movies: json.results
         });
       });
   }
@@ -38,14 +38,31 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-        <section className="logo">
-        <img id="movie_reel" src={logo} alt="logo"></img>
-        </section>
+          
+          <section className="logo">
+            <img id="movie_reel" src={logo} alt="logo"></img>
+          </section>
+
           <section className="masthead">
             <h1 id="banner">Now showing at the Movies</h1>
           </section>
+        
         </header>
-        <section className="movie-list" />
+
+        <section className="movie-list">
+          {this.state.movies.map((movie, i)=>{
+            return(
+              <section id="movies" key={i}>
+              
+              
+              
+              
+              </section>
+            )
+          })}
+
+
+        </section>
       </div>
     );
   }
