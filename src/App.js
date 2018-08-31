@@ -5,6 +5,8 @@ import logo from "./Images/movie-reel.png";
 import MovieDetail from "./Components/MovieDetail";
 // TEMPORARY
 // import MovieDetail from "./Components/MovieDetail";
+import logo from './Images/movie-reel.png'
+import ListOfMovies from './Components/ListOfMovies'
 
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 // const NOW_PLAYING = "/now_playing?api_key=";
@@ -12,15 +14,29 @@ import MovieDetail from "./Components/MovieDetail";
 // const FORMAT = "&language=en-US&page=1";
 
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      movies: []
+      movies: [],
+      moviePoster: {}
     };
   }
+  key = "e99344bac0d2a5336621a8492eeb2e74"
+  baseURL = "https://api.themoviedb.org/3/movie/now_playing?api_key="
+  langUS = "&language=en-US"
+  tmp = "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1"
+  imageURL = "https://image.tmdb.org/t/p/"
+  imageSize = "w200"
+
   componentDidMount() {
-    fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1"
+    this.getJSON()
+    this.getMoviePoster("/xqECHNvzbDL5I3iiOVUkVPJMSbc.jpg")
+  }
+
+  getJSON = () => {
+    fetch(this.baseURL + this.key + this.langUS + "&page=1"
+
     )
       .then(resp => {
         if (resp.status === 200) {
@@ -30,17 +46,41 @@ class App extends Component {
         }
       })
       .then(json => {
-        console.log(json);
+        // console.log(json);
         this.setState({
           movies: json.results
         });
       });
   }
 
+  getMoviePoster = (imagePath) => {
+    // console.log(this.imageURL + this.imageSize + imagePath)
+
+    fetch(this.imageURL + this.imageSize + imagePath
+
+    )
+      .then(resp => {
+        if (resp.status === 200) {
+          return resp.blob();
+        } else {
+          return <section>404</section>;
+        }
+      })
+      .then(poster => {
+
+        this.setState({
+          moviePoster: poster
+        });
+      });
+  }//END getMoviePoster = (imagePath)
+
+
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
+
           <section className="logo">
             <img id="movie_reel" src={logo} alt="logo" />
           </section>
@@ -55,13 +95,9 @@ class App extends Component {
         </header>
 
         <section className="movie-list">
-          {this.state.movies.map((movie, i) => {
-            return <section id="movies" key={i} />;
-          })}
-        </section>
-        {/* TEMP SECTION FOR RENDER */}
-        <section>
-          <MovieDetail />
+
+          <ListOfMovies movies={this.state.movies} />
+
         </section>
       </div>
     );
