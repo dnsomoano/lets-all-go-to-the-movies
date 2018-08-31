@@ -1,0 +1,30 @@
+.movie_list_container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+#movies_list_display {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 1em;
+        
+}
+
+#movie {
+    height: auto;
+    width: 10em;
+    border: inset;
+    margin: 1em;
+    align-self: center;
+    
+} 
+
+h3 {
+    word-wrap: wrap;
+    width: 9em;
+}

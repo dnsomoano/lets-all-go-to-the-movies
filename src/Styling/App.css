@@ -30,6 +30,13 @@
   width: 4em;
   margin-right: 1em;
 }
+.movie-list {
+  display: flex;
+  justify-content: center;
+  
+  
+
+}
 
 @keyframes movie_reel {
   from { transform: rotate(0deg); }
