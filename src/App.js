@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 /********************************** Styles ****************************************************************/
 import "./Styling/App.css";
+import logo from "./Images/movie-reel.png";
+import MovieDetail from "./Components/MovieDetail";
+// TEMPORARY
+// import MovieDetail from "./Components/MovieDetail";
 import logo from './Images/movie-reel.png'
 
 
@@ -35,13 +39,16 @@ class App extends Component {
         <header className="App-header">
 
           <section className="logo">
-            <img id="movie_reel" src={logo} alt="logo"></img>
+            <img id="movie_reel" src={logo} alt="logo" />
           </section>
 
           <section className="masthead">
             <h1 id="banner">Now showing at the Movies</h1>
           </section>
 
+          <button className="temp-button">
+            <a href="/Components/MovieDetail">Button to view my page, until we Link</a>
+          </button>
         </header>
 
         <section className="movie-list">
