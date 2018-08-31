@@ -10,13 +10,44 @@ class ListOfMovies extends Component {
     imageURL = "https://image.tmdb.org/t/p/"
     imageSize = "w200"
 
+    constructor(props) {
+        super(props);
+        this.state = {
+          movies: [],
+          moviePoster: {}
+        };
+      }
+
+    componentDidMount() {
+        this.getJSON()
+        
+      }
+
+    getJSON = () => {
+        fetch(this.baseURL + this.key + this.langUS + "&page=1"
+    
+        )
+          .then(resp => {
+            if (resp.status === 200) {
+              return resp.json();
+            } else {
+              return <section>404</section>;
+            }
+          })
+          .then(json => {
+            // console.log(json);
+            this.setState({
+              movies: json.results
+            });
+          });
+      }
 
 
     render() {
         return (
             <section className="movie_list_container">
 
-                {this.props.movies.map((movie, i) => {
+                {this.state.movies.map((movie, i) => {
                     // this.getMoviePoster(movie.poster_path)
                     return (
                         <section id="movies_list_display" key={i}>
