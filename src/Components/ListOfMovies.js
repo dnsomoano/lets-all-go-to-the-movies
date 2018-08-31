@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
+/**************************************************** Styles  ***************************************************/
 import '../Styling/ListOfMovies.css'
+
+/**************************************************** Styles  ***************************************************/
+
+
 
 class ListOfMovies extends Component {
     key = "e99344bac0d2a5336621a8492eeb2e74"
@@ -10,13 +16,47 @@ class ListOfMovies extends Component {
     imageURL = "https://image.tmdb.org/t/p/"
     imageSize = "w200"
 
+    constructor(props) {
+        super(props);
+        this.state = {
+          movies: [],
 
+        };
+      }//END constructor
+
+    componentDidMount() {
+        this.getJSON()
+        
+      }
+
+
+/**************************************************** Functions  ***************************************************/
+    getJSON = () => {
+        fetch(this.baseURL + this.key + this.langUS + "&page=1"
+    
+        )
+          .then(resp => {
+            if (resp.status === 200) {
+              return resp.json();
+            } else {
+              return <section>404</section>;
+            }
+          })
+          .then(json => {
+            // console.log(json);
+            this.setState({
+              movies: json.results
+            });
+          });
+      }
+
+/**************************************************** Functions  ***************************************************/
 
     render() {
         return (
             <section className="movie_list_container">
 
-                {this.props.movies.map((movie, i) => {
+                {this.state.movies.map((movie, i) => {
                     // this.getMoviePoster(movie.poster_path)
                     return (
                         <section id="movies_list_display" key={i}>
