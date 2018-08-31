@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-// import {BrowserRouter as Router, Link, Switch} from "react-router-dom";
+import {Link} from "react-router-dom";
+
+
+import Home from '../Images/blue_home.png'
 
 // https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>
 // const IMG_BASE="https://image.tmdb.org/t/p/w500"
@@ -58,6 +61,12 @@ class MovieDetail extends Component {
   render() {
     return (
       <div>
+        <span className="breadcrumb">
+          <Link to="/"><img id="home_icon" src={Home} alt="Home Icon"></img></Link>
+
+        </span>
+
+
         {/* <h1>{this.props.movie.original_title}</h1> */}
         {/* <img src={this.props.movie.poster_path} alt="MoviePoster"/> */}
         {/* <section>{this.props.movie.overview}</section> */}

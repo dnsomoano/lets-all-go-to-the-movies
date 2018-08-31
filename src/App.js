@@ -1,13 +1,11 @@
 import React, { Component } from "react";
+import MovieDetail from './Components/MovieDetail'
+
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 
 /********************************** Styles ****************************************************************/
 import "./Styling/App.css";
 import logo from "./Images/movie-reel.png";
-import MovieDetail from "./Components/MovieDetail";
-// TEMPORARY
-// import MovieDetail from "./Components/MovieDetail";
-import logo from './Images/movie-reel.png'
 
 
 /********************************** Components **********************************************************/
@@ -54,6 +52,7 @@ class App extends Component {
         <section className="movie-list">
           <Switch>
             <Route path="/" exact component={ListOfMovies}/>
+            <Route path="/:_moviedetail/:movieID" exact component={MovieDetail} />
 
           </Switch>
 
