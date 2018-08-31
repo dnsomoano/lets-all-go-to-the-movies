@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import '../Styling/ListOfMovies.css'
 
 /**************************************************** NAV  ***************************************************/
-import HOME from '../Images/blue_home.png'
+import Home from '../Images/blue_home.png'
+
 
 /*********************************************************************************************************** */
 class ListOfMovies extends Component {
@@ -19,45 +20,52 @@ class ListOfMovies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          movies: [],
+            movies: [],
 
         };
-      }//END constructor
+    }//END constructor
 
     componentDidMount() {
         this.getJSON()
-        
-      }
+
+    }
 
 
-/**************************************************** Functions  ***************************************************/
+    /**************************************************** Functions  ***************************************************/
     getJSON = () => {
         fetch(this.baseURL + this.key + this.langUS + "&page=1"
-    
-        )
-          .then(resp => {
-            if (resp.status === 200) {
-              return resp.json();
-            } else {
-              return <section>404</section>;
-            }
-          })
-          .then(json => {
-            // console.log(json);
-            this.setState({
-              movies: json.results
-            });
-          });
-      }
 
-/**************************************************** Functions  ***************************************************/
+        )
+            .then(resp => {
+                if (resp.status === 200) {
+                    return resp.json();
+                } else {
+                    return <section>404</section>;
+                }
+            })
+            .then(json => {
+                // console.log(json);
+                this.setState({
+                    movies: json.results
+                });
+            });
+    }
+
+    /**************************************************** Functions  ***************************************************/
 
     render() {
+        const _listOfMovies = this.props.match.params.ListOfMovies
         return (
+            
             <section className="movie_list_container">
                 <span className="breadcrumb">
                    <Link to="/"> <img id="home_icon"src={HOME} alt="Home Icon"></img> </Link>
                 
+                </span>
+
+                <span className="breadcrumb">
+                    <img id="home_icon"src={Home} alt="Home Icon"></img>
+
                 </span>
 
                 {this.state.movies.map((movie, i) => {
@@ -65,7 +73,9 @@ class ListOfMovies extends Component {
                     return (
                         <section id="movies_list_display" key={i}>
                             <h3>{movie.original_title}</h3>
-                            <img id="movie"src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.title}></img>
+                            <Link to={`/${_listOfMovies}/${i}`}>
+                            <img id="movie" src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.title}></img>
+                            </Link>
                         </section>
 
                     )//END return
@@ -73,8 +83,10 @@ class ListOfMovies extends Component {
                 }//END {this.state.movies.map((movie, i) => 
                 )//END ((movies,i))
                 }
-                 </section>  
-        )}}
+            </section>
+        )
+    }
+}
 
 
-                export default ListOfMovies;
+export default ListOfMovies;
