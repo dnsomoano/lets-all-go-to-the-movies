@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 // import {BrowserRouter as Router, Link, Switch} from "react-router-dom";
 import "./Styling/App.css";
-import logo from './Images/movie-reel.png'
+import logo from "./Images/movie-reel.png";
+import MovieDetail from "./Components/MovieDetail";
+// TEMPORARY
+// import MovieDetail from "./Components/MovieDetail";
 
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 // const NOW_PLAYING = "/now_playing?api_key=";
@@ -38,30 +41,27 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          
           <section className="logo">
-            <img id="movie_reel" src={logo} alt="logo"></img>
+            <img id="movie_reel" src={logo} alt="logo" />
           </section>
 
           <section className="masthead">
             <h1 id="banner">Now showing at the Movies</h1>
           </section>
-        
+
+          <button className="temp-button">
+            <a href="/Components/MovieDetail">Button to view my page, until we Link</a>
+          </button>
         </header>
 
         <section className="movie-list">
-          {this.state.movies.map((movie, i)=>{
-            return(
-              <section id="movies" key={i}>
-              
-              
-              
-              
-              </section>
-            )
+          {this.state.movies.map((movie, i) => {
+            return <section id="movies" key={i} />;
           })}
-
-
+        </section>
+        {/* TEMP SECTION FOR RENDER */}
+        <section>
+          <MovieDetail />
         </section>
       </div>
     );

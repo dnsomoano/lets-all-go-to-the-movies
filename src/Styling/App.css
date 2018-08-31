@@ -35,3 +35,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/*  */
+/* TEMP Styling */
+.temp-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
