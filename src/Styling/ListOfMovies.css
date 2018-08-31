@@ -28,3 +28,11 @@ h3 {
     word-wrap: wrap;
     width: 9em;
 }
+
+.breadcrumb {
+    margin: 1em 0 2em .5em;
+}
+
+#home_icon {
+    
+}

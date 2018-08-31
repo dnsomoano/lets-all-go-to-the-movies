@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 /**************************************************** Styles  ***************************************************/
 import '../Styling/ListOfMovies.css'
 
-/**************************************************** Styles  ***************************************************/
+/**************************************************** NAV  ***************************************************/
+import HOME from '../Images/blue_home.png'
 
-
-
+/*********************************************************************************************************** */
 class ListOfMovies extends Component {
     key = "e99344bac0d2a5336621a8492eeb2e74"
     baseURL = "https://api.themoviedb.org/3/movie/now_playing?api_key="
@@ -55,6 +55,10 @@ class ListOfMovies extends Component {
     render() {
         return (
             <section className="movie_list_container">
+                <span className="breadcrumb">
+                   <Link to="/"> <img id="home_icon"src={HOME} alt="Home Icon"></img> </Link>
+                
+                </span>
 
                 {this.state.movies.map((movie, i) => {
                     // this.getMoviePoster(movie.poster_path)
