@@ -16,9 +16,9 @@ This weekend, you will pair up in groups of 2 to create a "Now Playing in Theatr
 Note: This might include prerequisites or setup instructions.
 ## Explorer Mode ##
 - - - - - - - - - -
-- [ ] Create a home page that has:
+- [X] Create a home page that has:
 
-  - [ ] the list of all "now showing" movies, returned from this API https://api.themoviedb.org/3/movie/now_playing?api_key=<<your key here>>>&language=en-US&page=1
+  - [X] the list of all "now showing" movies, returned from this API https://api.themoviedb.org/3/movie/now_playing?api_key=<<your key here>>>&language=en-US&page=1
   - [ ] this page should also random highlight a random "now showing" movie at the top of the page
 
 - [ ] Create a ``/Movie/:moveidId`` page that shows all the details for a given movie and the cast of the movie. The cast end point is ``https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>``

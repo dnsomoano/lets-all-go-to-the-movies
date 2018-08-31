@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MovieDetail from './Components/MovieDetail'
 
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 /********************************** Styles ****************************************************************/
 import "./Styling/App.css";

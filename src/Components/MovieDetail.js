@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import {BrowserRouter as Link} from "react-router-dom";
 
 
 import Home from '../Images/blue_home.png'
