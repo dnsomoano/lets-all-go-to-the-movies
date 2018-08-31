@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
+/**************************************************** Styles  ***************************************************/
 import '../Styling/ListOfMovies.css'
+
+/**************************************************** Styles  ***************************************************/
+
+
 
 class ListOfMovies extends Component {
     key = "e99344bac0d2a5336621a8492eeb2e74"
@@ -14,15 +20,17 @@ class ListOfMovies extends Component {
         super(props);
         this.state = {
           movies: [],
-          moviePoster: {}
+
         };
-      }
+      }//END constructor
 
     componentDidMount() {
         this.getJSON()
         
       }
 
+
+/**************************************************** Functions  ***************************************************/
     getJSON = () => {
         fetch(this.baseURL + this.key + this.langUS + "&page=1"
     
@@ -42,6 +50,7 @@ class ListOfMovies extends Component {
           });
       }
 
+/**************************************************** Functions  ***************************************************/
 
     render() {
         return (
