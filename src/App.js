@@ -44,9 +44,6 @@ class App extends Component {
             <h1 id="banner">Now showing at the Movies</h1>
           </section>
 
-          <button className="temp-button">
-            <a href="/Components/MovieDetail">Button to view my page, until we Link</a>
-          </button>
         </header>
 
         <section className="movie-list">
