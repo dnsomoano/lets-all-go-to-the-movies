@@ -62,10 +62,6 @@ class ListOfMovies extends Component {
                    <Link to="/"> <img id="home_icon"src={Home} alt="Home Icon"></img> </Link>
                 
                 </span>
-
-                <span className="breadcrumb">
-                    <Link to="/"><img id="home_icon" src={Home} alt="Home Icon"></img></Link>
-                </span>
                 
                 <section className="movie_list_container">
 
