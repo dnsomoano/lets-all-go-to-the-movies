@@ -1,0 +1,11 @@
+.selection-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.selection-section h1 {
+    cursor: pointer;
+    text-align: center;
+}

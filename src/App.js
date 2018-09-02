@@ -43,8 +43,8 @@ class App extends Component {
             </section>
           </header>
 
+          <RandomSelection />
           <section className="movie-list">
-              <RandomSelection />
             <Switch>
               <Route path="/" exact component={ListOfMovies} />
               {/* Must stay as id to pass on props */}

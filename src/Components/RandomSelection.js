@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Link } from "react-router-dom";
 
 class RandomSelection extends Component {
   key = "e99344bac0d2a5336621a8492eeb2e74";
@@ -25,22 +26,27 @@ class RandomSelection extends Component {
         }
       })
       .then(json => {
-        console.log(json);
+        console.log(json.results);
         console.log(json.results.length);
         let randChoice = Math.floor(Math.random() * json.results.length);
         this.setState({
-          selection: randChoice
+          selection: Object.values(json.results[randChoice])
         });
+        console.log(this.state.selection[4]);
         console.log(this.state.selection);
       });
   }
   render() {
     return (
-      <div>
-        {/* <header>Latest Title</header>
-        {this.state.selection.map((latest, i) => {
-          return <section key={i}>{latest.title}</section>;
-        })} */}
+      <div className="selection-section">
+        <header>Latest Title</header>
+        <h1>{this.state.selection[4]}</h1>
+        <Link to={`/Movie/${this.state.selection[1]}`}>
+          <img
+            src={`${this.imageURL}${this.imageSize}${this.state.selection[6]}`}
+            alt={this.state.selection[4]}
+          />
+        </Link>
       </div>
     );
   }
