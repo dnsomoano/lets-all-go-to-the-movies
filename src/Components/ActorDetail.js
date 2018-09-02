@@ -28,7 +28,7 @@ class ActorDetail extends Component {
       })
       .then(json => {
         console.log(json);
-        console.log(json);
+        // console.log(json);
         // this.setState({
         //   cast:[]
         // });

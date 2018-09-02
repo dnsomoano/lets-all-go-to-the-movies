@@ -1,11 +1,15 @@
 .breadcrumb {
     display: flex;
     justify-content: flex-start;
-    margin: 1em 0 0 0;
+    margin: 1em .5em 0 0;
 }
 
 #home_icon {
-    margin: 1em 0 0 3em;
+    margin: 1em .5em 0 3em;
+}
+
+Link {
+  margin-right: .5em;
 }
 
 /* section for movie details */

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { BrowserRouter as Link } from "react-router-dom";
+// import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../Styling/MovieDetail.css";
 import Home from "../Images/blue_home.png";
 
@@ -24,10 +25,10 @@ class MovieDetail extends Component {
   }
 
   componentDidMount() {
-    console.log("Component mounted!");
-    console.log("The movie id is:", this.state.id);
-    console.log("The movie id is:", this.props.match.params.id);
-    console.log("The image path is at:", this.props.poster_path);
+    // console.log("Component mounted!");
+    // console.log("The movie id is:", this.state.id);
+    // console.log("The movie id is:", this.props.match.params.id);
+    // console.log("The image path is at:", this.props.poster_path);
     // Fetches movie details based on id
     fetch(
       this.baseURL + `${this.state.id}` + this.key + this.langUS + "&page=1"
@@ -41,7 +42,7 @@ class MovieDetail extends Component {
         }
       })
       .then(json => {
-        console.log(json);
+        // console.log(json);
         // console.log(json.results);
         const movieObj = {
           title: json.title,
@@ -60,7 +61,7 @@ class MovieDetail extends Component {
     fetch(this.baseURL + `${this.state.id}` + this.credits + this.key)
       .then(resp => {
         if (resp.status === 200) {
-          console.log("Fetched cast");
+          // console.log("Fetched cast");
           return resp.json();
         } else {
           return console.log("404");
@@ -68,12 +69,12 @@ class MovieDetail extends Component {
       })
       .then(json => {
         console.log(json.cast);
-        console.log(json.cast[0]);
+        // console.log(json.cast[0]);
         this.setState({
           cast: json.cast
         });
         // console.log("The cast object is", castObj);
-        console.log("The cast displays:", this.state.cast);
+        // console.log("The cast displays:", this.state.cast);
         console.log("The character is at:", this.state.cast.character);
       });
   }
@@ -95,6 +96,7 @@ class MovieDetail extends Component {
           <Link to="/">
             <img id="home_icon" src={Home} alt="Home Icon" />
           </Link>
+          <h5>   >> Movie Details </h5>
         </span>
         <section className="movie-details">
           <h2>{this.props.match.params.title}</h2>
