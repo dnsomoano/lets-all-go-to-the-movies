@@ -47,7 +47,7 @@ class RandomSelection extends Component {
             alt={this.state.selection[4]}
           />
         </Link>
-        <header>{this.state.selection[4]}</header>
+        {/* <header>{this.state.selection[4]}</header> */}
       </div>
     );
   }
