@@ -3,14 +3,6 @@ import { BrowserRouter as Link } from "react-router-dom";
 import "../Styling/MovieDetail.css";
 import Home from "../Images/blue_home.png";
 
-// https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>
-// const IMG_BASE="https://image.tmdb.org/t/p/w500"
-// Poster path ex https://image.tmdb.org/t/p/w500 + poster_path
-// https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>
-// const CREDITS_URL ="/credits?api_key="
-// const API_KEY = "e99344bac0d2a5336621a8492eeb2e74";
-
-// const BASE_URL = "https://api.themoviedb.org/3/movie";
 
 class MovieDetail extends Component {
   key = "?api_key=e99344bac0d2a5336621a8492eeb2e74";
@@ -98,28 +90,29 @@ class MovieDetail extends Component {
 
     return (
       <div>
+        {/* FIX to link back home */}
         <span className="breadcrumb">
           <Link to="/">
             <img id="home_icon" src={Home} alt="Home Icon" />
           </Link>
         </span>
         <section className="movie-details">
-          <h1>{this.state.movie.title}</h1>
+          <h2>{this.props.match.params.title}</h2>
           <img
-            id="movie"
+            id="large_poster"
             src={`${this.imageURL}${this.imageSize}${this.state.movie.poster}`}
-            alt={this.state.movie.title}
+            alt={this.props.match.params.title}
           />
-          <section>
+          <section className="movie-overview">
             <p>{this.state.movie.overview}</p>
           </section>
         </section>
         {/* Section for cast */}
-        <header className="section-header">The Cast & Crew</header>
+        <h1 className="section-header">The Cast & Crew</h1>
         <section className="cast-body">
           {this.state.cast.map((castMember, i) => {
             return (
-              <section className="Movie-details" key={i}>
+              <section className="Movie-details cast-preview" key={i}>
                 <h1>
                   {castMember.name} as {castMember.character}
                 </h1>

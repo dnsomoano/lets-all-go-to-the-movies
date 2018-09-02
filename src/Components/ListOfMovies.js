@@ -44,7 +44,7 @@ class ListOfMovies extends Component {
                 }
             })
             .then(json => {
-                console.log(json);
+                // console.log(json);
                 this.setState({
                     movies: json.results
                 });
@@ -71,7 +71,7 @@ class ListOfMovies extends Component {
                         return (
                             <section id="movies_list_display" key={i}>
                                 <h3>{movie.original_title}</h3>
-                                <Link to={`/Movie/${movie.id}`}>
+                                <Link to={`/${movie.original_title}/${movie.id}`}>
                                     <img id="movie" src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.id}></img>
                                 </Link>
                             </section>

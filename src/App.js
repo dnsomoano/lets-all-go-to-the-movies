@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import MovieDetail from './Components/MovieDetail'
+import MovieDetail from "./Components/MovieDetail";
+import RandomSelection from "./Components/RandomSelection";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -7,9 +8,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./Styling/App.css";
 import logo from "./Images/movie-reel.png";
 
-
 /********************************** Components **********************************************************/
-import ListOfMovies from './Components/ListOfMovies'
+import ListOfMovies from "./Components/ListOfMovies";
 
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 // const NOW_PLAYING = "/now_playing?api_key=";
@@ -17,7 +17,6 @@ import ListOfMovies from './Components/ListOfMovies'
 // const FORMAT = "&language=en-US&page=1";
 
 class App extends Component {
-
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -26,39 +25,34 @@ class App extends Component {
   //   };
   // }//END constructor
 
-
   // componentDidMount() {
 
   // }
 
   render() {
-    return (<Router>
-      <div className="App">
-        <header className="App-header">
+    return (
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <section className="logo">
+              <img id="movie_reel" src={logo} alt="logo" />
+            </section>
 
-          <section className="logo">
-            <img id="movie_reel" src={logo} alt="logo" />
+            <section className="masthead">
+              <h1 id="banner">Now showing at the Movies</h1>
+            </section>
+          </header>
+
+          <section className="movie-list">
+              <RandomSelection />
+            <Switch>
+              <Route path="/" exact component={ListOfMovies} />
+              {/* Must stay as id to pass on props */}
+              <Route path="/:title/:id" exact component={MovieDetail} />
+            </Switch>
           </section>
-
-          <section className="masthead">
-            <h1 id="banner">Now showing at the Movies</h1>
-          </section>
-
-          <button className="temp-button">
-            <a href="/Movie/0">Button to view my page, until we Link</a>
-          </button>
-        </header>
-
-        <section className="movie-list">
-          <Switch>
-            <Route path="/" exact component={ListOfMovies}/>
-            <Route path="/Movie/:id" exact component={MovieDetail} />
-
-          </Switch>
-
-        </section>
-      </div>
-    </Router>
+        </div>
+      </Router>
     );
   }
 }
