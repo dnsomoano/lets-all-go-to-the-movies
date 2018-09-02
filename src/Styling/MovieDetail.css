@@ -1,0 +1,23 @@
+/* section for movie details */
+.movie-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* section for cast */
+.cast-body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Original size is 500 x 750 pixels */
+.cast-body img {
+    border: 2px solid black;
+    border-radius: 0.3em;
+    height: 375px;
+    width: 250px;
+    margin: 0.5em;
+}

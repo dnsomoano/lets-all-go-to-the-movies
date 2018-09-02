@@ -21,7 +21,7 @@ Note: This might include prerequisites or setup instructions.
   - [X] the list of all "now showing" movies, returned from this API https://api.themoviedb.org/3/movie/now_playing?api_key=<<your key here>>>&language=en-US&page=1
   - [ ] this page should also random highlight a random "now showing" movie at the top of the page
 
-- [ ] Create a ``/Movie/:moveidId`` page that shows all the details for a given movie and the cast of the movie. The cast end point is ``https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>``
+- [X] Create a ``/Movie/:moveidId`` page that shows all the details for a given movie and the cast of the movie. The cast end point is ``https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>``
 
 - [ ] Each member of the group must still submit the repository for their assignment. This repository should have commits from both students.
 
