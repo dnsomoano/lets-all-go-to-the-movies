@@ -18,18 +18,18 @@ import ListOfMovies from './Components/ListOfMovies'
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     movies: this.props.match.params.m,
 
-    };
-  }//END constructor
+  //   };
+  // }//END constructor
 
 
-  componentDidMount() {
+  // componentDidMount() {
 
-  }
+  // }
 
   render() {
     return (<Router>
@@ -52,7 +52,7 @@ class App extends Component {
         <section className="movie-list">
           <Switch>
             <Route path="/" exact component={ListOfMovies}/>
-            <Route path="/:_moviedetail/:movieID" exact component={MovieDetail} />
+            <Route path="/Movie/:index" exact component={MovieDetail} />
 
           </Switch>
 

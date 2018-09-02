@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {BrowserRouter as Link} from "react-router-dom";
 
-
 import Home from '../Images/blue_home.png'
 
 // https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>
@@ -14,10 +13,13 @@ import Home from '../Images/blue_home.png'
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 
 class MovieDetail extends Component {
+  // movieID = this.props.match.params.movieID;
+
   constructor(props) {
     super(props);
     this.state = {
-      id: []
+      id: this.props.match.params.movieID,
+      movie: {}
     };
   }
 
@@ -35,21 +37,17 @@ class MovieDetail extends Component {
       })
       .then(movieData => {
         console.log(movieData);
-        const movieObj = Object.values(movieData);
-        console.log(movieObj);
-        // must loop over movieArr[i].id === DOES NOT WORK
-        const movieArr = Object.values(movieObj[0]);
-        console.log(movieArr);
-        const movieIds = Object.values(movieArr[0]);
-        console.log(movieIds);
-        // movieObj[0].id.map(movieId => {
-        //   return this.state.id.push(movieId);
-        // });
-        // console.log(this.state.id);
-        // console.log(typeof this.state.id);
-        // this.setState({
-        //   id: json.results[0].id
-        // });
+        const movieObj = {
+          title: movieData.title,
+          id: movieData.id,
+          poster: this.props.poster_path,
+          overview: movieData.overview
+        }
+        console.log(this.state.id);
+        console.log(typeof this.state.id);
+        this.setState({
+          movie: movieObj
+        });
       });
     //TODO after
     // fetch using a variable to replace movie id in url
@@ -59,6 +57,15 @@ class MovieDetail extends Component {
   }
 
   render() {
+    // props from ListOfMovies component
+    // gets mapped json movie from line 71
+    // const _listOfMovies = this.props.match.params.ListOfMovies
+    const _getMovie = this.props.movie;
+    // const _movieDetail = this.props.match.params._moviedetail;
+    // const _index = this.props.match.params.movieID;
+    // 
+    // const _movieData = _listOfMovies[_movieDetail].id[_index];
+
     return (
       <div>
         <span className="breadcrumb">
@@ -67,9 +74,9 @@ class MovieDetail extends Component {
         </span>
 
 
-        {/* <h1>{this.props.movie.original_title}</h1> */}
-        {/* <img src={this.props.movie.poster_path} alt="MoviePoster"/> */}
-        {/* <section>{this.props.movie.overview}</section> */}
+        <h1>{this.state.movie.original_title}</h1>
+        <img id="movie" src={`${this.props.imageURL}${this.props.imageSize}${this.state.movie.poster_path}`} alt={_getMovie.title}></img>
+        <section>{this.state.movie.overview}</section>
         {/* Section for cast */}
         <section>
           {/* {this.props.movies.{movieId}.map((movie, i)=>{
@@ -81,8 +88,8 @@ class MovieDetail extends Component {
                         // return image as this.state.cast.profile_path
               </section>
             )
-          })} */}
-        </section>
+        })} */}
+</section>
       </div>
     );
   }
