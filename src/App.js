@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import MovieDetail from './Components/MovieDetail'
+import MovieDetail from "./Components/MovieDetail";
+import RandomSelection from "./Components/RandomSelection";
+import ActorDetail from "./Components/ActorDetail";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -7,9 +9,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./Styling/App.css";
 import logo from "./Images/movie-reel.png";
 
-
 /********************************** Components **********************************************************/
-import ListOfMovies from './Components/ListOfMovies'
+import ListOfMovies from "./Components/ListOfMovies";
 
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 // const NOW_PLAYING = "/now_playing?api_key=";
@@ -17,45 +18,43 @@ import ListOfMovies from './Components/ListOfMovies'
 // const FORMAT = "&language=en-US&page=1";
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     movies: this.props.match.params.m,
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
+  //   };
+  // }//END constructor
 
-    };
-  }//END constructor
+  // componentDidMount() {
 
-
-  componentDidMount() {
-
-  }
+  // }
 
   render() {
-    return (<Router>
-      <div className="App">
-        <header className="App-header">
+    return (
+      <Router>
+        <div className="App">
+          <header className="App-header">
+          <RandomSelection />
+            <section className="logo">
+              <img id="movie_reel" src={logo} alt="logo" />
+            </section>
 
-          <section className="logo">
-            <img id="movie_reel" src={logo} alt="logo" />
+            <section className="masthead">
+              <h1 id="banner">Now showing at the Movies</h1>
+            </section>
+          </header>
+
+          <section className="movie-list">
+            <Switch>
+              <Route path="/" exact component={ListOfMovies} />
+              {/* Must stay as id to pass on props */}
+              <Route path="/:title/:id" exact component={MovieDetail} />
+              <Route path="/Cast/:person_id" exact component={ActorDetail} />
+            </Switch>
           </section>
-
-          <section className="masthead">
-            <h1 id="banner">Now showing at the Movies</h1>
-          </section>
-
-        </header>
-
-        <section className="movie-list">
-          <Switch>
-            <Route path="/" exact component={ListOfMovies}/>
-            <Route path="/:_moviedetail/:movieID" exact component={MovieDetail} />
-
-          </Switch>
-
-        </section>
-      </div>
-    </Router>
+        </div>
+      </Router>
     );
   }
 }
