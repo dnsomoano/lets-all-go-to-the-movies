@@ -1,0 +1,76 @@
+.breadcrumb {
+    display: flex;
+    justify-content: flex-start;
+    margin: 1em 0 0 0;
+}
+
+#home_icon {
+    margin: 1em 0 0 3em;
+}
+
+/* section for movie details */
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.poster-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Original size 757 x 750 pixels */
+#large_poster {
+  display: flex;
+  align-self: center;
+  flex-grow: 0.2;
+  flex-shrink: 0.2;
+  border: 0.1em outset black;
+  border-radius: 0.3em;
+  /* height: 50%;
+    width: 50%; */
+}
+
+.movie-overview {
+  display: flex;
+  align-self: center;
+  flex-grow: 1;
+  flex-shrink: 1;
+  border: 0.2em double;
+  margin: 1em;
+  padding: 0.2em;
+  width: 34em;
+}
+
+/* section for cast */
+.cast-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cast-preview {
+  border: 0.2em outset;
+  border-radius: 0.3em;
+  margin: 0.5em;
+  padding: 0.5em;
+}
+
+.cast-preview h1 {
+  font-weight: normal;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+/* Original size is 500 x 750 pixels */
+.cast-body img {
+  border: 0.1em inset;
+  border-radius: 0.3em;
+  height: 375px;
+  width: 250px;
+}
