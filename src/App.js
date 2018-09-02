@@ -45,7 +45,7 @@ class App extends Component {
           </section>
 
           <button className="temp-button">
-            <a href="/Components/MovieDetail">Button to view my page, until we Link</a>
+            <a href="/Movie/0">Button to view my page, until we Link</a>
           </button>
         </header>
 

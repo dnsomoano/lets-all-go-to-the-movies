@@ -44,7 +44,7 @@ class ListOfMovies extends Component {
                 }
             })
             .then(json => {
-                // console.log(json);
+                console.log(json);
                 this.setState({
                     movies: json.results
                 });
@@ -54,7 +54,7 @@ class ListOfMovies extends Component {
     /**************************************************** Functions  ***************************************************/
 
     render() {
-        const _listOfMovies = this.props.match.params.ListOfMovies
+        // const _listOfMovies = this.props.match.params.ListOfMovies
         return (
             
             <section className="movie_list_container">
@@ -71,8 +71,8 @@ class ListOfMovies extends Component {
                         return (
                             <section id="movies_list_display" key={i}>
                                 <h3>{movie.original_title}</h3>
-                                <Link to={`/${_listOfMovies}/${i}`}>
-                                    <img id="movie" src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.title}></img>
+                                <Link to={`/Movie/${i}`}>
+                                    <img id="movie" src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.id}></img>
                                 </Link>
                             </section>
 

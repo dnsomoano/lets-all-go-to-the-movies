@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {BrowserRouter as Link} from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
-import Home from '../Images/blue_home.png'
+import Home from "../Images/blue_home.png";
 
 // https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>
 // const IMG_BASE="https://image.tmdb.org/t/p/w500"
@@ -13,69 +13,86 @@ import Home from '../Images/blue_home.png'
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 
 class MovieDetail extends Component {
+  key = "e99344bac0d2a5336621a8492eeb2e74"
+  baseURL = "https://api.themoviedb.org/3/movie/now_playing?api_key="
+  langUS = "&language=en-US"
+  tmp = "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1"
+  imageURL = "https://image.tmdb.org/t/p/"
+  imageSize = "w200"
   // movieID = this.props.match.params.movieID;
 
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.match.params.movieID,
-      movie: {}
+      id: this.props.match.params.id,
+      movie: [{}]
     };
   }
 
   componentDidMount() {
-    // fetch json.results.id?
+    console.log("Component mounted!");
+    console.log("The movie id is:", this.state.id);
+    console.log("The movie id is:", this.props.match.params.id);
+    console.log("The image path is at:", this.props.poster_path);
+    // fetch json.results.results.id?
     fetch(
       "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1"
     )
       .then(resp => {
         if (resp.status === 200) {
+          console.log("Successful fetch!");
           return resp.json();
         } else {
-          return <section>404</section>;
+          return <section>console.log("404")</section>;
         }
       })
-      .then(movieData => {
-        console.log(movieData);
+      .then(json => {
+        console.log(json.results[this.state.id]);
+        // console.log(json.results);
         const movieObj = {
-          title: movieData.title,
-          id: movieData.id,
+          title: json.results[0].title,
+          id: json.results[0].id,
           poster: this.props.poster_path,
-          overview: movieData.overview
-        }
-        console.log(this.state.id);
-        console.log(typeof this.state.id);
+          overview: json.results[0].overview
+        };
+        console.log(movieObj)
         this.setState({
           movie: movieObj
         });
       });
+    console.log("The title is at:", this.state.movie.title);
+    console.log("The poster is at:",this.state.poster);
     //TODO after
     // fetch using a variable to replace movie id in url
     // promise a response
-    // promise a json
+    // promise a json.results
     // set state w key value "cast"
   }
 
   render() {
     // props from ListOfMovies component
-    // gets mapped json movie from line 71
+    // gets mapped json.results movie from line 71
     // const _listOfMovies = this.props.match.params.ListOfMovies
-    const _getMovie = this.props.movie;
+    // const _getMovie = this.props.movie;
     // const _movieDetail = this.props.match.params._moviedetail;
     // const _index = this.props.match.params.movieID;
-    // 
-    // const _movieData = _listOfMovies[_movieDetail].id[_index];
+    //
+    // const _json.results = _listOfMovies[_movieDetail].id[_index];
 
     return (
       <div>
         <span className="breadcrumb">
-          <Link to="/"><img id="home_icon" src={Home} alt="Home Icon"></img></Link>
-
+          <Link to="/"><img id="home_icon" src={Home} alt="Home Icon" /></Link>
         </span>
 
-
-        <h1>{this.state.movie.original_title}</h1>
-        <img id="movie" src={`${this.props.imageURL}${this.props.imageSize}${this.state.movie.poster_path}`} alt={_getMovie.title}></img>
+        <h1>{this.state.movie.title}</h1>
+        {/* <img
+          id="movie"
+          src={`${this.imageURL}${this.imageSize}${
+            this.props.movie.poster_path
+          }`}
+          alt={this.state.movie.title}
+        /> */}
         <section>{this.state.movie.overview}</section>
         {/* Section for cast */}
         <section>
@@ -87,9 +104,9 @@ class MovieDetail extends Component {
                         // return actor this.state.cast.name as this.state.cast.character
                         // return image as this.state.cast.profile_path
               </section>
-            )
+             )
         })} */}
-</section>
+        </section>
       </div>
     );
   }
