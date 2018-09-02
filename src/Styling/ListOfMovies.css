@@ -15,6 +15,9 @@
     margin: 1em;
         
 }
+#movies_list_display:nth-of-type(odd){
+    background-color: lightgray;
+}
 
 #movie {
     height: auto;
