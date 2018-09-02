@@ -3,9 +3,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    margin: 0;
 }
 
 .selection-section h1 {
     cursor: pointer;
     text-align: center;
+    width: 11em;
+}
+
+/* NOT WORKING */
+/* Original size is 200 x 300 pixels */
+/* #featured-img {
+    height: 75px;
+    width: 50px;
+    margin: 1.5em 0 0 0;
+} */
+
+header {
+    color: blueviolet; 
 }

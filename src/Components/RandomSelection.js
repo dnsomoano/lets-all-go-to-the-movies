@@ -39,14 +39,15 @@ class RandomSelection extends Component {
   render() {
     return (
       <div className="selection-section">
-        <header>Latest Title</header>
-        <h1>{this.state.selection[4]}</h1>
-        <Link to={`/Movie/${this.state.selection[1]}`}>
-          <img
+        <Link to={`/${this.state.selection[7]}/${this.state.selection[1]}`}>
+          <img id="featured-img"
             src={`${this.imageURL}${this.imageSize}${this.state.selection[6]}`}
+            height="25%"
+            width="25%"
             alt={this.state.selection[4]}
           />
         </Link>
+        <header>{this.state.selection[4]}</header>
       </div>
     );
   }

@@ -59,6 +59,14 @@
   padding: 0.5em;
 }
 
+.cast-preview h1 {
+  font-weight: normal;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
 /* Original size is 500 x 750 pixels */
 .cast-body img {
   border: 0.1em inset;

@@ -114,14 +114,16 @@ class MovieDetail extends Component {
             return (
               <section className="Movie-details cast-preview" key={i}>
                 <h1>
-                  {castMember.name} as {castMember.character}
+                  <span className="bold-text">{castMember.name}</span> as {castMember.character}
                 </h1>
+                <Link to={`/Cast/${castMember.id}`}>
                 <img
                   src={`${this.imageURL}${this.imageSize}${
                     castMember.profile_path
                   }`}
                   alt={castMember.name}
                 />
+                </Link>
               </section>
             );
           })}

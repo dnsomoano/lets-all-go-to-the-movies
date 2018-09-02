@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MovieDetail from "./Components/MovieDetail";
 import RandomSelection from "./Components/RandomSelection";
+import ActorDetail from "./Components/ActorDetail";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -34,6 +35,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
+          <RandomSelection />
             <section className="logo">
               <img id="movie_reel" src={logo} alt="logo" />
             </section>
@@ -43,12 +45,12 @@ class App extends Component {
             </section>
           </header>
 
-          <RandomSelection />
           <section className="movie-list">
             <Switch>
               <Route path="/" exact component={ListOfMovies} />
               {/* Must stay as id to pass on props */}
               <Route path="/:title/:id" exact component={MovieDetail} />
+              <Route path="/Cast/:person_id" exact component={ActorDetail} />
             </Switch>
           </section>
         </div>
