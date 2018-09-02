@@ -62,27 +62,26 @@ class ListOfMovies extends Component {
                    <Link to="/"> <img id="home_icon"src={Home} alt="Home Icon"></img> </Link>
                 
                 </span>
+                
+                <section className="movie_list_container">
 
-                <span className="breadcrumb">
-                    <img id="home_icon"src={Home} alt="Home Icon"></img>
 
-                </span>
+                    {this.state.movies.map((movie, i) => {
+                        // this.getMoviePoster(movie.poster_path)
+                        return (
+                            <section id="movies_list_display" key={i}>
+                                <h3>{movie.original_title}</h3>
+                                <Link to={`/${_listOfMovies}/${i}`}>
+                                    <img id="movie" src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.title}></img>
+                                </Link>
+                            </section>
 
-                {this.state.movies.map((movie, i) => {
-                    // this.getMoviePoster(movie.poster_path)
-                    return (
-                        <section id="movies_list_display" key={i}>
-                            <h3>{movie.original_title}</h3>
-                            <Link to={`/${_listOfMovies}/${i}`}>
-                            <img id="movie" src={`${this.imageURL}${this.imageSize}${movie.poster_path}`} alt={movie.title}></img>
-                            </Link>
-                        </section>
+                        )//END return
 
-                    )//END return
-
-                }//END {this.state.movies.map((movie, i) => 
-                )//END ((movies,i))
-                }
+                    }//END {this.state.movies.map((movie, i) => 
+                    )//END ((movies,i))
+                    }
+                </section>
             </section>
         )
     }
