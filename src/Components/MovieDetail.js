@@ -13,12 +13,13 @@ import Home from "../Images/blue_home.png";
 // const BASE_URL = "https://api.themoviedb.org/3/movie";
 
 class MovieDetail extends Component {
-  key = "e99344bac0d2a5336621a8492eeb2e74"
-  baseURL = "https://api.themoviedb.org/3/movie/now_playing?api_key="
-  langUS = "&language=en-US"
-  tmp = "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1"
-  imageURL = "https://image.tmdb.org/t/p/"
-  imageSize = "w200"
+  key = "?api_key=e99344bac0d2a5336621a8492eeb2e74";
+  baseURL = "https://api.themoviedb.org/3/movie/";
+  langUS = "&language=en-US";
+  tmp =
+    "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1";
+  imageURL = "https://image.tmdb.org/t/p/";
+  imageSize = "w500";
   // movieID = this.props.match.params.movieID;
 
   constructor(props) {
@@ -36,7 +37,7 @@ class MovieDetail extends Component {
     console.log("The image path is at:", this.props.poster_path);
     // fetch json.results.results.id?
     fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1"
+      this.baseURL + `${this.state.id}` + this.key + this.langUS + "&page=1"
     )
       .then(resp => {
         if (resp.status === 200) {
@@ -47,21 +48,21 @@ class MovieDetail extends Component {
         }
       })
       .then(json => {
-        console.log(json.results[this.state.id]);
+        console.log(json);
         // console.log(json.results);
         const movieObj = {
-          title: json.results[0].title,
-          id: json.results[0].id,
-          poster: this.props.poster_path,
-          overview: json.results[0].overview
+          title: json.title,
+          id: json.id,
+          poster: json.poster_path,
+          overview: json.overview
         };
-        console.log(movieObj)
+        console.log(movieObj);
         this.setState({
           movie: movieObj
         });
       });
     console.log("The title is at:", this.state.movie.title);
-    console.log("The poster is at:",this.state.poster);
+    console.log("The poster is at:", this.state.poster);
     //TODO after
     // fetch using a variable to replace movie id in url
     // promise a response
@@ -82,17 +83,19 @@ class MovieDetail extends Component {
     return (
       <div>
         <span className="breadcrumb">
-          <Link to="/"><img id="home_icon" src={Home} alt="Home Icon" /></Link>
+          <Link to="/">
+            <img id="home_icon" src={Home} alt="Home Icon" />
+          </Link>
         </span>
 
         <h1>{this.state.movie.title}</h1>
-        {/* <img
+        <img
           id="movie"
           src={`${this.imageURL}${this.imageSize}${
-            this.props.movie.poster_path
+            this.state.movie.poster
           }`}
           alt={this.state.movie.title}
-        /> */}
+        />
         <section>{this.state.movie.overview}</section>
         {/* Section for cast */}
         <section>
