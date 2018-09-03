@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../Styling/MovieDetail.css";
 import Home from "../Images/blue_home.png";
 
-
 class MovieDetail extends Component {
   key = "?api_key=e99344bac0d2a5336621a8492eeb2e74";
   baseURL = "https://api.themoviedb.org/3/movie/";
@@ -46,6 +45,7 @@ class MovieDetail extends Component {
         // console.log(json.results);
         const movieObj = {
           title: json.title,
+          backdrop_path: json.backdrop_path,
           id: json.id,
           poster: json.poster_path,
           overview: json.overview
@@ -96,7 +96,7 @@ class MovieDetail extends Component {
           <Link to="/">
             <img id="home_icon" src={Home} alt="Home Icon" />
           </Link>
-          <h5>   >> Movie Details </h5>
+          <h5> >> Movie Details </h5>
         </span>
         <section className="movie-details">
           <h2>{this.props.match.params.title}</h2>
@@ -116,15 +116,26 @@ class MovieDetail extends Component {
             return (
               <section className="Movie-details cast-preview" key={i}>
                 <h1>
-                  <span className="bold-text">{castMember.name}</span> as {castMember.character}
+                  <span className="bold-text">{castMember.name}</span> as{" "}
+                  {castMember.character}
                 </h1>
                 <Link to={`/Cast/${castMember.id}`}>
-                <img
-                  src={`${this.imageURL}${this.imageSize}${
-                    castMember.profile_path
-                  }`}
-                  alt={castMember.name}
-                />
+                  {/* if (!{CastMember.profile_path} === "null") {
+                  return */}
+                  <span>
+                    <img
+                      src={`${this.imageURL}${this.imageSize}${
+                        castMember.profile_path
+                      }`}
+                      alt={castMember.name}
+                    />
+                  </span>
+                  {/* // } else {
+                  //   return <span><img
+                  //   src={`${this.imageURL}${this.imageSize}${this.state.movie.backdrop_path}`}
+                  //   alt={castMember.name}
+                  // /></span>
+                // } */}
                 </Link>
               </section>
             );

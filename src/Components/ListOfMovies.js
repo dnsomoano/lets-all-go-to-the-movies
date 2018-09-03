@@ -44,7 +44,7 @@ class ListOfMovies extends Component {
                 }
             })
             .then(json => {
-                // console.log(json);
+                console.log(json);
                 this.setState({
                     movies: json.results
                 });
