@@ -48,6 +48,12 @@ Link {
   width: 34em;
 }
 
+.movie-overview > p {
+  text-align: left;
+  word-wrap: break-word;
+}
+
+
 /* section for cast */
 .cast-body {
   display: flex;

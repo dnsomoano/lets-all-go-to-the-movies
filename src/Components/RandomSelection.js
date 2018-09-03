@@ -16,7 +16,7 @@ class RandomSelection extends Component {
     };
   }
 
-  componentDidMount() {
+  getRandomPicture =()=> {
     fetch(this.baseURL + this.key + this.langUS + "&page=1")
       .then(resp => {
         if (resp.status === 200) {
@@ -26,16 +26,26 @@ class RandomSelection extends Component {
         }
       })
       .then(json => {
-        console.log(json.results);
-        console.log(json.results.length);
+        // console.log(json.results);
+        // console.log(json.results.length);
         let randChoice = Math.floor(Math.random() * json.results.length);
         this.setState({
           selection: Object.values(json.results[randChoice])
         });
-        console.log(this.state.selection[4]);
-        console.log(this.state.selection);
+        // console.log(this.state.selection[4]);
+        // console.log(this.state.selection);
       });
   }
+
+
+  componentDidMount() {
+    setTimeout(this.getRandomPicture, 500)
+    setInterval(this.getRandomPicture, 10000)
+
+  }
+
+
+
   render() {
     return (
       <div className="selection-section">
