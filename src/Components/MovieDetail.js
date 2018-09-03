@@ -24,10 +24,6 @@ class MovieDetail extends Component {
     };
   }
 
-  setCastProfileState  =()=>{
-    this.setState({castProfile: this.image})
-    console.log("from setState",this.state.castProfile)
-  }
 
   componentDidMount() {
     // console.log("Component mounted!");
@@ -40,7 +36,7 @@ class MovieDetail extends Component {
     )
       .then(resp => {
         if (resp.status === 200) {
-          console.log("Successful fetch!");
+          // console.log("Successful fetch!");
           return resp.json();
         } else {
           return console.log("404");
@@ -56,7 +52,7 @@ class MovieDetail extends Component {
           poster: json.poster_path,
           overview: json.overview
         };
-        console.log("The movie object is", movieObj);
+        // console.log("The movie object is", movieObj);
         this.setState({
           movie: movieObj
         });
@@ -74,7 +70,7 @@ class MovieDetail extends Component {
         }
       })
       .then(json => {
-        console.log(json.cast);
+        // console.log(json.cast);
         // console.log(json.cast[0]);
         this.setState({
           cast: json.cast
@@ -121,13 +117,15 @@ class MovieDetail extends Component {
         <h1 className="section-header">The Cast & Crew</h1>
         <section className="cast-body">
           {this.state.cast.map((castMember, i) => {
+            
+            // Determine if cast profile is null; display poster if it is
            if(castMember.profile_path === null){
               this.image = this.imageURL+this.imageSize+this.state.movie.poster;
-              console.log(this.image)
+              // console.log(this.image)
               // {()=>this.setCastProfileState}
            }else {
              this.image = this.imageURL+this.imageSize+castMember.profile_path
-             console.log("line 128 this image",this.image)
+            //  console.log("line 128 this image",this.image)
             //  this.setCastProfileState
            }
             return (
@@ -140,13 +138,12 @@ class MovieDetail extends Component {
                   {/* if (!{CastMember.profile_path} === "null") {
                   return */}
                   <span>
-                    {console.log("line 144",this.state.castProfile)}
+                    {/* {console.log("line 144",this.state.castProfile)} */}
                     <img
                       // src={`${this.imageURL}${this.imageSize}${
                       //   castMember.profile_path
                       // }`}
                       src={this.image}
-                      
                       alt={castMember.name}
                     />
                   </span>
