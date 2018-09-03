@@ -11,7 +11,7 @@ class MovieDetail extends Component {
   // tmp =
   //   "https://api.themoviedb.org/3/movie/now_playing?api_key=e99344bac0d2a5336621a8492eeb2e74&language=en-US&page=1";
   imageURL = "https://image.tmdb.org/t/p/";
-  imageSize = "w500";
+  imageSize = "w500/";
   credits = "/credits";
 
   constructor(props) {
@@ -19,8 +19,14 @@ class MovieDetail extends Component {
     this.state = {
       id: this.props.match.params.id,
       movie: [{}],
-      cast: [{}]
+      cast: [{}],
+    
     };
+  }
+
+  setCastProfileState  =()=>{
+    this.setState({castProfile: this.image})
+    console.log("from setState",this.state.castProfile)
   }
 
   componentDidMount() {
@@ -75,9 +81,11 @@ class MovieDetail extends Component {
         });
         // console.log("The cast object is", castObj);
         // console.log("The cast displays:", this.state.cast);
-        console.log("The character is at:", this.state.cast.character);
+        // console.log("The character is at:", this.state.cast.character);
       });
   }
+
+  image = ""
 
   render() {
     // props from ListOfMovies component
@@ -113,6 +121,15 @@ class MovieDetail extends Component {
         <h1 className="section-header">The Cast & Crew</h1>
         <section className="cast-body">
           {this.state.cast.map((castMember, i) => {
+           if(castMember.profile_path === null){
+              this.image = this.imageURL+this.imageSize+this.state.movie.poster;
+              console.log(this.image)
+              // {()=>this.setCastProfileState}
+           }else {
+             this.image = this.imageURL+this.imageSize+castMember.profile_path
+             console.log("line 128 this image",this.image)
+            //  this.setCastProfileState
+           }
             return (
               <section className="Movie-details cast-preview" key={i}>
                 <h1>
@@ -123,10 +140,13 @@ class MovieDetail extends Component {
                   {/* if (!{CastMember.profile_path} === "null") {
                   return */}
                   <span>
+                    {console.log("line 144",this.state.castProfile)}
                     <img
-                      src={`${this.imageURL}${this.imageSize}${
-                        castMember.profile_path
-                      }`}
+                      // src={`${this.imageURL}${this.imageSize}${
+                      //   castMember.profile_path
+                      // }`}
+                      src={this.image}
+                      
                       alt={castMember.name}
                     />
                   </span>

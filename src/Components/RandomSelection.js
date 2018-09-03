@@ -37,7 +37,6 @@ class RandomSelection extends Component {
       });
   }
 
-
   componentDidMount() {
     setTimeout(this.getRandomPicture, 500)
     setInterval(this.getRandomPicture, 10000)
