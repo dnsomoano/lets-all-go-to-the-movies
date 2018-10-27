@@ -35,7 +35,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <header className="App-header">
-          <RandomSelection />
+            <RandomSelection />
             <section className="logo">
               <img id="movie_reel" src={logo} alt="logo" />
             </section>

@@ -1,15 +1,15 @@
 .breadcrumb {
-    display: flex;
-    justify-content: flex-start;
-    margin: 1em .5em 0 0;
+  display: flex;
+  justify-content: flex-start;
+  margin: 1em;
 }
 
-#home_icon {
-    margin: 1em .5em 0 3em;
-}
+/* #home_icon {
+  margin: 1em 0.5em 0 3em;
+} */
 
-Link {
-  margin-right: .5em;
+link {
+  margin-right: 0.5em;
 }
 
 /* section for movie details */
@@ -52,7 +52,6 @@ Link {
   text-align: left;
   word-wrap: break-word;
 }
-
 
 /* section for cast */
 .cast-body {

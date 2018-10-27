@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../Styling/MovieDetail.css";
 import Home from "../Images/blue_home.png";
+import Axios from "axios";
 
 class MovieDetail extends Component {
   key = "?api_key=e99344bac0d2a5336621a8492eeb2e74";
@@ -19,69 +20,46 @@ class MovieDetail extends Component {
     this.state = {
       id: this.props.match.params.id,
       movie: [{}],
-      cast: [{}],
-    
+      cast: [{}]
     };
   }
 
-
   componentDidMount() {
-    // console.log("Component mounted!");
-    // console.log("The movie id is:", this.state.id);
-    // console.log("The movie id is:", this.props.match.params.id);
-    // console.log("The image path is at:", this.props.poster_path);
     // Fetches movie details based on id
-    fetch(
+    Axios.get(
       this.baseURL + `${this.state.id}` + this.key + this.langUS + "&page=1"
     )
-      .then(resp => {
-        if (resp.status === 200) {
-          // console.log("Successful fetch!");
-          return resp.json();
-        } else {
-          return console.log("404");
-        }
-      })
       .then(json => {
-        // console.log(json);
-        // console.log(json.results);
+        console.log(json.data);
         const movieObj = {
-          title: json.title,
-          backdrop_path: json.backdrop_path,
-          id: json.id,
-          poster: json.poster_path,
-          overview: json.overview
+          title: json.data.title,
+          backdrop_path: json.data.backdrop_path,
+          id: json.data.id,
+          poster: json.data.poster_path,
+          overview: json.data.overview
         };
         // console.log("The movie object is", movieObj);
         this.setState({
           movie: movieObj
         });
+      })
+      .catch(error => {
+        console.log(error);
       });
     // console.log("The title is at:", this.state.movie.title);
     // console.log("The poster is at:", this.state.poster);
     // Fetches for CAST
-    fetch(this.baseURL + `${this.state.id}` + this.credits + this.key)
-      .then(resp => {
-        if (resp.status === 200) {
-          // console.log("Fetched cast");
-          return resp.json();
-        } else {
-          return console.log("404");
-        }
-      })
+    Axios.get(this.baseURL + `${this.state.id}` + this.credits + this.key)
       .then(json => {
-        // console.log(json.cast);
-        // console.log(json.cast[0]);
-        this.setState({
-          cast: json.cast
-        });
-        // console.log("The cast object is", castObj);
-        // console.log("The cast displays:", this.state.cast);
-        // console.log("The character is at:", this.state.cast.character);
+        console.log(json.data.cast);
+        this.setState({ cast: json.data.cast });
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
 
-  image = ""
+  image = "";
 
   render() {
     // props from ListOfMovies component
@@ -100,7 +78,7 @@ class MovieDetail extends Component {
           <Link to="/">
             <img id="home_icon" src={Home} alt="Home Icon" />
           </Link>
-          <h5> >> Movie Details </h5>
+          <h5> > Movie Details </h5>
         </span>
         <section className="movie-details">
           <h2>{this.props.match.params.title}</h2>
@@ -117,17 +95,18 @@ class MovieDetail extends Component {
         <h1 className="section-header">The Cast & Crew</h1>
         <section className="cast-body">
           {this.state.cast.map((castMember, i) => {
-            
             // Determine if cast profile is null; display poster if it is
-           if(castMember.profile_path === null){
-              this.image = this.imageURL+this.imageSize+this.state.movie.poster;
+            if (castMember.profile_path === null) {
+              this.image =
+                this.imageURL + this.imageSize + this.state.movie.poster;
               // console.log(this.image)
               // {()=>this.setCastProfileState}
-           }else {
-             this.image = this.imageURL+this.imageSize+castMember.profile_path
-            //  console.log("line 128 this image",this.image)
-            //  this.setCastProfileState
-           }
+            } else {
+              this.image =
+                this.imageURL + this.imageSize + castMember.profile_path;
+              //  console.log("line 128 this image",this.image)
+              //  this.setCastProfileState
+            }
             return (
               <section className="Movie-details cast-preview" key={i}>
                 <h1>
