@@ -19,41 +19,42 @@ class MovieDetail extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      movie: [{}],
+      movie: {},
       cast: [{}]
     };
   }
 
   componentDidMount() {
-    // Fetches movie details based on id
-    Axios.get(
-      this.baseURL + `${this.state.id}` + this.key + this.langUS + "&page=1"
-    )
-      .then(json => {
-        console.log(json.data);
-        const movieObj = {
-          title: json.data.title,
-          backdrop_path: json.data.backdrop_path,
-          id: json.data.id,
-          poster: json.data.poster_path,
-          overview: json.data.overview
-        };
-        // console.log("The movie object is", movieObj);
-        this.setState({
-          movie: movieObj
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    // console.log("The title is at:", this.state.movie.title);
-    // console.log("The poster is at:", this.state.poster);
-    // Fetches for CAST
-    Axios.get(this.baseURL + `${this.state.id}` + this.credits + this.key)
-      .then(json => {
-        console.log(json.data.cast);
-        this.setState({ cast: json.data.cast });
-      })
+    // Fetches media details and cast based on id
+    Axios.all([
+      Axios.get(
+        this.baseURL + `${this.state.id}` + this.key + this.langUS + "&page=1"
+      ),
+      Axios.get(this.baseURL + `${this.state.id}` + this.credits + this.key)
+    ])
+      .then(
+        Axios.spread((mediaData, castData) => {
+          console.log(castData.data.cast);
+          console.log(mediaData.data);
+          let movieObj = {
+            title: mediaData.data.title,
+            backdrop_path: mediaData.data.backdrop_path,
+            id: mediaData.data.id,
+            poster: mediaData.data.poster_path,
+            overview: mediaData.data.overview
+          };
+          console.log("The movie object is", movieObj);
+          console.log(typeof movieObj);
+          this.setState({
+            movie: movieObj,
+            cast: castData.data.cast
+          });
+          console.log(this.state.cast);
+          // // Fetches for CAST
+          //   console.log(castData);
+          //   this.setState({ cast: castData.data.cast });
+        })
+      )
       .catch(error => {
         console.log(error);
       });
@@ -114,24 +115,9 @@ class MovieDetail extends Component {
                   {castMember.character}
                 </h1>
                 <Link to={`/Cast/${castMember.id}`}>
-                  {/* if (!{CastMember.profile_path} === "null") {
-                  return */}
                   <span>
-                    {/* {console.log("line 144",this.state.castProfile)} */}
-                    <img
-                      // src={`${this.imageURL}${this.imageSize}${
-                      //   castMember.profile_path
-                      // }`}
-                      src={this.image}
-                      alt={castMember.name}
-                    />
+                    <img src={this.image} alt={castMember.name} />
                   </span>
-                  {/* // } else {
-                  //   return <span><img
-                  //   src={`${this.imageURL}${this.imageSize}${this.state.movie.backdrop_path}`}
-                  //   alt={castMember.name}
-                  // /></span>
-                // } */}
                 </Link>
               </section>
             );
