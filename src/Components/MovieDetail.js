@@ -19,7 +19,7 @@ class MovieDetail extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      movie: {},
+      media: {},
       cast: [{}]
     };
   }
@@ -36,17 +36,17 @@ class MovieDetail extends Component {
         Axios.spread((mediaData, castData) => {
           console.log(castData.data.cast);
           console.log(mediaData.data);
-          let movieObj = {
+          let mediaObj = {
             title: mediaData.data.title,
             backdrop_path: mediaData.data.backdrop_path,
             id: mediaData.data.id,
             poster: mediaData.data.poster_path,
             overview: mediaData.data.overview
           };
-          console.log("The movie object is", movieObj);
-          console.log(typeof movieObj);
+          console.log("The movie object is", mediaObj);
+          console.log(typeof mediaObj);
           this.setState({
-            movie: movieObj,
+            media: mediaObj,
             cast: castData.data.cast
           });
           console.log(this.state.cast);
@@ -82,14 +82,14 @@ class MovieDetail extends Component {
           <h5> > Movie Details </h5>
         </span>
         <section className="movie-details">
-          <h2>{this.props.match.params.title}</h2>
+          <h2>{this.state.media.title}</h2>
           <img
             id="large_poster"
-            src={`${this.imageURL}${this.imageSize}${this.state.movie.poster}`}
-            alt={this.props.match.params.title}
+            src={`${this.imageURL}${this.imageSize}${this.state.media.poster}`}
+            alt={this.state.media.title}
           />
           <section className="movie-overview">
-            <p>{this.state.movie.overview}</p>
+            <p>{this.state.media.overview}</p>
           </section>
         </section>
         {/* Section for cast */}
