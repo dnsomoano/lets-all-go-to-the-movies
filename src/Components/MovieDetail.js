@@ -43,13 +43,11 @@ class MovieDetail extends Component {
             poster: mediaData.data.poster_path,
             overview: mediaData.data.overview
           };
-          console.log("The movie object is", mediaObj);
-          console.log(typeof mediaObj);
+          console.log("The media object is", mediaObj);
           this.setState({
             media: mediaObj,
             cast: castData.data.cast
           });
-          console.log(this.state.cast);
           // // Fetches for CAST
           //   console.log(castData);
           //   this.setState({ cast: castData.data.cast });
@@ -99,7 +97,7 @@ class MovieDetail extends Component {
             // Determine if cast profile is null; display poster if it is
             if (castMember.profile_path === null) {
               this.image =
-                this.imageURL + this.imageSize + this.state.movie.poster;
+                this.imageURL + this.imageSize + this.state.media.poster;
               // console.log(this.image)
               // {()=>this.setCastProfileState}
             } else {
