@@ -23,11 +23,11 @@ Note: This might include prerequisites or setup instructions.
 
 - [X] Create a ``/Movie/:moveidId`` page that shows all the details for a given movie and the cast of the movie. The cast end point is ``https://api.themoviedb.org/3/movie/<<<Movie Id>>>/credits?api_key=<<your key here>>>``
 
-- [ ] Each member of the group must still submit the repository for their assignment. This repository should have commits from both students.
+- [X] Each member of the group must still submit the repository for their assignment. This repository should have commits from both students.
 
 ## Adventure Mode ##
 - - - - - - - - - -
-- [ ] Add a page to view all the movies for actor. This page should show as much as you get from the API about this actor. HINT: Use the People section of the API for this
+- [X] Add a page to view all the movies for actor. This page should show as much as you get from the API about this actor. HINT: Use the People section of the API for this
 
 ## Epic Mode ##
 - - - - - - - -

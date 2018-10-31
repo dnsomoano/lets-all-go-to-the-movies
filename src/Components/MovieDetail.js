@@ -113,9 +113,7 @@ class MovieDetail extends Component {
                   {castMember.character}
                 </h1>
                 <Link to={`/Cast/${castMember.id}`}>
-                  <span>
-                    <img src={this.image} alt={castMember.name} />
-                  </span>
+                  <img src={this.image} alt={castMember.name} />
                 </Link>
               </section>
             );

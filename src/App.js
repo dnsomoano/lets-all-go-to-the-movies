@@ -49,8 +49,8 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={ListOfMovies} />
               {/* Must stay as id to pass on props */}
-              <Route path="/:title/:id" exact component={MovieDetail} />
-              <Route path="/Cast/:person_id" exact component={ActorDetail} />
+              <Route path="/movie/:title/:id" exact component={MovieDetail} />
+              <Route path="/Cast/:personid" exact component={ActorDetail} />
             </Switch>
           </section>
         </div>
